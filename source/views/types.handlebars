@@ -1,0 +1,32 @@
+<h1>Pokemon Generation 1 Types</h1>
+<div id="sidebar">
+<h3>Index:</h3>
+
+<ul>
+	<li><a href="/types">Types</a></li>
+	<li><a href="/location">Locations</a></li>
+	<li><a href="/move">Moves</a></li>
+	<li><a href="/">Pokemon</a></li>
+</ul>
+<br>
+<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+</div>
+<main>
+<table id="TypesTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+	</tr>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td>{{this.type_id}}</td>
+				<td class="typeBox"><div id="{{this.type_name}}"><a href="/of_type/{{this.type_name}}">{{this.type_name}}</a></div></td>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

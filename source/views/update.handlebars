@@ -1,0 +1,53 @@
+<h1>Update the desired entry</h1>
+
+<div id="sidebar">
+<h3>Index:</h3>
+<ul>
+	<li><a href="/types">Types</a></li>
+	<li><a href="/location">Locations</a></li>
+	<li><a href="/move">Moves</a></li>
+	<li><a href="/">Pokemon</a></li>
+</ul>
+<br>
+<h3>
+	Types Chart
+</h3>
+<ul>
+	<li id="None">0  - None</li>
+	<li id="Normal">1  - Normal</li>
+	<li id="Fighting">2  - Fighting</li>
+	<li id="Flying">3  - Flying</li>
+	<li id="Poison">4  - Poison</li>
+	<li id="Ground">5  - Ground</li>
+	<li id="Rock">6  - Rock</li>
+	<li id="Bug">7  - Bug</li>
+	<li id="Ghost">8  - Ghost</li>
+	<li id="Steel">9  - Steel</li>
+	<li id="Fire">10 - Fire</li>
+	<li id="Water">11 - Water</li>
+	<li id="Grass">12 - Grass</li>
+	<li id="Electric">13 - Electric</li>
+	<li id="Psychic">14 - Psychic</li>
+	<li id="Ice">15 - Ice</li>
+	<li id="Dragon">16 - Dragon</li>
+	<li id="Dark">17 - Dark</li>
+</ul>
+</div>
+
+<main>
+<form action="/updateBack">
+	ID Number:	
+	<br><input type="number" name="id" id="id" min="1" max="151" value="{{results.id}}"><br>
+	Pokemon's Name:	
+	<br><input type="text" name="name" id="name" value="{{results.name}}"><br>
+	Pokemon's Type 1 (Please enter the corresponding number from the Type Chart.)
+	<br><input type="text" name="type1" id="type1" value="{{results.type1}}"><br>
+	Pokemon's Type 2 (Please enter the corresponding number from the Type Chart.)
+	<br><input type="text" name="type2" id="type2" value="{{results.type2}}"><br>
+	Description:	
+	<br><input type="text" name="description" id="description" input size="80" value="{{results.description}}"><br>
+	
+	<input type="submit" name="updatePokemon" value="Update Pokemon" id="updatePokemon">
+</form>
+<br>
+</main>

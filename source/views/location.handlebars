@@ -1,0 +1,59 @@
+<h1>Pokemon Generation 1 Locations</h1>
+<div id="sidebar">
+<h3>Index:</h3>
+<ul>
+	<li><a href="/types">Types</a></li>
+	<li><a href="/location">Locations</a></li>
+	<li><a href="/move">Moves</a></li>
+	<li><a href="/">Pokemon</a></li>
+</ul>
+<br>
+	<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+	<form id="newLocation">
+		<h3>Add Location</h3><br>
+		ID Number:	
+		<br><input type="number" name="location_id" id="location_id" min="1" max="500"><br>
+		Location's Name:	
+		<br><input type="text" name="location_name" id="location_name"><br>
+		Description:
+		<br><input type="text" name="location_description" id="location_description"><br>
+		<input type="submit" name="Add Location" value="Add Location" id="addLocationSubmit"><br>
+		Please refresh after submitting.
+	</form>
+</div>
+<br>
+
+
+<main>
+<table id="LocationTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th>Description</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td>{{this.location_id}}</td>
+				<td>{{this.location_name}}</td>
+				<td>{{this.location_description}}</td>
+				<td>
+					<a href="/update?id={{this.location_id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('LocationTable','{{this.location_id}}')">
+					<input type="hidden" id="delete{{this.location_id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

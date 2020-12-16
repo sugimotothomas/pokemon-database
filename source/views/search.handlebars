@@ -1,0 +1,199 @@
+<h1>Pokemon Generation 1 Pokedex</h1>
+<div id="sidebar">
+	<div id="index">
+	<h3>Index:</h3>
+	<ul>
+		<li><a href="/types">Types</a></li>
+		<li><a href="/location">Locations</a></li>
+		<li><a href="/move">Moves</a></li>
+		<li><a href="/">Pokemon</a></li>
+	</ul>
+	</div>
+	
+	<br>
+	<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+
+	
+</div>
+<main>
+{{#each pokemon}}
+<h1 id="pokemonName" title="{{this.id}}">{{this.name}}</h1>
+{{/each}}
+<table id="PokemonTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th colspan="2">Type</th>
+        <th>Description</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if pokemon}}
+		{{#each pokemon}}
+			<tr>
+				<td><img src="https://img.pokemondb.net/sprites/sun-moon/icon/{{this.url}}.png" alt="{{this.name}}">{{this.id}}</td>
+				<td>{{this.name}}</td>
+				<td class="typeBox" colspan="{{this.colspan}}"><div id="{{this.type1}}">{{this.type1}}</div></td>
+				<td class="typeBox" style="{{this.display}}"><div id="{{this.type2}}">{{this.type2}}</div></td>
+				<td>{{this.description}}</td>
+				<td>
+					<a href="/update?id={{this.id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('PokemonTable','{{this.id}}')">
+					<input type="hidden" id="delete{{this.id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+<br>
+
+<h2>Evolves From</h2>
+<table id="EvolvesFromTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th colspan="2">Type</th>
+        <th>Description</th>
+		<th>Delete</th>
+	</tr>
+	{{#if evolvesFrom}}
+		{{#each evolvesFrom}}
+			<tr>
+				<td><img src="https://img.pokemondb.net/sprites/sun-moon/icon/{{this.url}}.png" alt="{{this.name}}">{{this.id}}</td>
+				<td><a href="/pokemon/{{this.name}}">{{this.name}}</a></td>
+				<td class="typeBox" colspan="{{this.colspan}}"><div id="{{this.type1}}">{{this.type1}}</div></td>
+				<td class="typeBox" style="{{this.display}}"><div id="{{this.type2}}">{{this.type2}}</div></td>
+				<td>{{this.description}}</td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('EvolvesFromTable','{{this.id}}')">
+					<input type="hidden" id="delete{{this.id}}">
+				</td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+
+{{#if pokemonList}}
+<div id="dropdown">
+Add new evolution - 
+<select id="addEvolveFrom">
+	{{#each pokemonList}}
+		<option value="{{this.id}}" name="{{this.id}} id="{{this.id}}">
+			{{this.name}}
+		</option>
+	{{/each}}
+</select>
+	<input type="submit" name="AddEvolveFrom" value="Add Evolution" id="addEvolveFromSubmit">
+	Please refresh after submitting.
+</div>
+{{/if}}
+
+<br>
+<h2>Can Evolve Into</h2>
+<table id="EvolvesIntoTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th colspan="2">Type</th>
+        <th>Description</th>
+		<th>Delete</th>
+	</tr>
+	{{#if evolvesInto}}
+		{{#each evolvesInto}}
+			<tr>
+				<td><img src="https://img.pokemondb.net/sprites/sun-moon/icon/{{this.url}}.png" alt="{{this.name}}">{{this.id}}</td>
+				<td><a href="/pokemon/{{this.name}}">{{this.name}}</a></td>
+				<td class="typeBox" colspan="{{this.colspan}}"><div id="{{this.type1}}">{{this.type1}}</div></td>
+				<td class="typeBox" style="{{this.display}}"><div id="{{this.type2}}">{{this.type2}}</div></td>
+				<td>{{this.description}}</td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('EvolvesIntoTable','{{this.id}}')">
+					<input type="hidden" id="delete{{this.id}}">
+				</td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+{{#if pokemonList}}
+<div id="dropdown">
+Add new evolution - 
+<select id="addEvolveTo">
+	{{#each pokemonList}}
+		<option value="{{this.id}}" name="{{this.id}} id="{{this.id}}">
+			{{this.name}}
+		</option>
+	{{/each}}
+</select>
+	<input type="submit" name="AddEvolveTo" value="Add Evolution" id="addEvolveToSubmit">
+	Please refresh after submitting.
+</div>
+{{/if}}
+<br>
+<h2>Possible Moves</h2>
+<table id="CanLearnTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th>Category</th>
+		<th>Type</th>
+		<th>Power</th>
+		<th>PP</th>
+		<th>Delete</th>
+	</tr>
+	{{#if moves}}
+		{{#each moves}}
+			<tr>
+				<td>{{this.move_id}}</td>
+				<td>{{this.move_name}}</td>
+				<td class="moveCategory"><img src="https://img.pokemondb.net/images/icons/{{this.url}}.png" alt="{{this.move_category}}"></td>
+				<td class="typeBox"><div id="{{this.move_type}}">{{this.move_type}}</div></td>
+				<td>{{this.move_power}}</td>
+				<td>{{this.move_pp}}</td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('CanLearnTable','{{this.move_id}}')">
+					<input type="hidden" id="delete{{this.move_id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+<br>
+<h2>Possible Locations</h2>
+<table id="IsFoundInTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th>Description</th>
+		<th>Delete</th>
+	</tr>
+	{{#if locations}}
+		{{#each locations}}
+			<tr>
+				<td>{{this.location_id}}</td>
+				<td>{{this.location_name}}</td>
+				<td>{{this.location_description}}</td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('IsFoundInTable','{{this.location_id}}')">
+					<input type="hidden" id="delete{{this.location_id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

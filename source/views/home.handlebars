@@ -1,0 +1,90 @@
+<h1>Pokemon Generation 1 Pokedex</h1>
+<div id="sidebar">
+	<div id="index">
+	<h3>Index:</h3>
+	<ul>
+		<li><a href="/types">Types</a></li>
+		<li><a href="/location">Locations</a></li>
+		<li><a href="/move">Moves</a></li>
+		<li><a href="/">Pokemon</a></li>
+	</ul>
+	</div>
+	<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+	<form id="newPokemon">
+		<h3>Add Pokemon</h3>
+		ID Number:	
+		<br><input type="number" name="id" id="id" min="1" max="151"><br>
+		Pokemon's Name:	
+		<br><input type="text" name="name" id="name"><br>
+		Pokemon's Type 1
+		<br><input type="text" name="type1" id="type1"><br>
+		Pokemon's Type 2
+		<br><input type="text" name="type2" id="type2"><br>
+		Description:	
+		<br><input type="text" name="description" id="description"><br>
+	
+		<input type="submit" name="Add Pokemon" value="Add Pokemon" id="addPokemonSubmit"><br>
+				Please refresh after submitting.
+
+	</form>
+<h3>
+	Types Chart
+</h3>
+<ul>
+	<li id="None">0  - None</li>
+	<li id="Normal">1  - Normal</li>
+	<li id="Fighting">2  - Fighting</li>
+	<li id="Flying">3  - Flying</li>
+	<li id="Poison">4  - Poison</li>
+	<li id="Ground">5  - Ground</li>
+	<li id="Rock">6  - Rock</li>
+	<li id="Bug">7  - Bug</li>
+	<li id="Ghost">8  - Ghost</li>
+	<li id="Steel">9  - Steel</li>
+	<li id="Fire">10 - Fire</li>
+	<li id="Water">11 - Water</li>
+	<li id="Grass">12 - Grass</li>
+	<li id="Electric">13 - Electric</li>
+	<li id="Psychic">14 - Psychic</li>
+	<li id="Ice">15 - Ice</li>
+	<li id="Dragon">16 - Dragon</li>
+	<li id="Dark">17 - Dark</li>
+</ul>
+</div>
+<main>
+
+<table id="PokemonTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th colspan="2">Type</th>
+        <th>Description</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if pokemon}}
+		{{#each pokemon}}
+			<tr>
+				<td><img src="https://img.pokemondb.net/sprites/sun-moon/icon/{{this.url}}.png" alt="{{this.name}}">{{this.id}}</td>
+				<td><a href="/pokemon/{{this.name}}">{{this.name}}</a></td>
+				<td class="typeBox" colspan="{{this.colspan}}"><div id="{{this.type1}}"><a href="/of_type/{{this.type1}}">{{this.type1}}</a></div></td>
+				<td class="typeBox" style="{{this.display}}"><div id="{{this.type2}}"><a href="/of_type/{{this.type2}}">{{this.type2}}</a></div></td>
+				<td>{{this.description}}</td>
+				<td>
+					<a href="/update?id={{this.id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('PokemonTable','{{this.id}}')">
+					<input type="hidden" id="delete{{this.id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

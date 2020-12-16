@@ -1,0 +1,97 @@
+<h1>Pokemon Generation 1 Moves</h1>
+<div id="sidebar">
+<h3>Index:</h3>
+<ul>
+	<li><a href="/types">Types</a></li>
+	<li><a href="/location">Locations</a></li>
+	<li><a href="/move">Moves</a></li>
+	<li><a href="/">Pokemon</a></li>
+</ul>
+<br>
+<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+	<form id="newMove">
+		<h3>Add Move</h3><br>
+		ID Number:	
+		<br><input type="number" name="move_id" id="move_id" min="1" max="500"><br>
+		Move's Name:	
+		<br><input type="text" name="move_name" id="move_name"><br>
+		Type:
+		<br><input type="text" name="move_type" id="move_type"><br>
+		Category:
+		<br><input type="text" name="move_category" id="move_category"><br>
+		Power:	
+		<br><input type="text" name="move_power" id="move_powerr"><br>
+		PP:	
+		<br><input type="text" name="move_pp" id="move_pp"><br>
+	
+		<input type="submit" name="Add Move" value="Add Move" id="addMoveSubmit"><br>
+				Please refresh after submitting.
+
+	</form>
+	<br>
+<h3>
+	Types Chart
+</h3>
+<ul>
+	<li id="None">0  - None</li>
+	<li id="Normal">1  - Normal</li>
+	<li id="Fighting">2  - Fighting</li>
+	<li id="Flying">3  - Flying</li>
+	<li id="Poison">4  - Poison</li>
+	<li id="Ground">5  - Ground</li>
+	<li id="Rock">6  - Rock</li>
+	<li id="Bug">7  - Bug</li>
+	<li id="Ghost">8  - Ghost</li>
+	<li id="Steel">9  - Steel</li>
+	<li id="Fire">10 - Fire</li>
+	<li id="Water">11 - Water</li>
+	<li id="Grass">12 - Grass</li>
+	<li id="Electric">13 - Electric</li>
+	<li id="Psychic">14 - Psychic</li>
+	<li id="Ice">15 - Ice</li>
+	<li id="Dragon">16 - Dragon</li>
+	<li id="Dark">17 - Dark</li>
+</ul>
+
+</div>
+
+<main>
+<table id="MoveTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th>Category</th>
+		<th>Type</th>
+		<th>Power</th>
+		<th>PP</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td>{{this.move_id}}</td>
+				<td>{{this.move_name}}</td>
+				<td class="moveCategory">
+					<img src="https://img.pokemondb.net/images/icons/{{this.url}}.png" alt="{{this.move_category}}"></td>
+				<td class="typeBox"><div id="{{this.move_type}}"><a href="/of_type/{{this.move_type}}">{{this.move_type}}</a></div></td>
+				<td>{{this.move_power}}</td>
+				<td>{{this.move_pp}}</td>
+				<td>
+					<a href="/update?id={{this.move_id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('MoveTable','{{this.move_id}}')">
+					<input type="hidden" id="delete{{this.move_id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

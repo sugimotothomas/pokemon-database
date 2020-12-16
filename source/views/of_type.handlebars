@@ -1,0 +1,51 @@
+<h1>Pokemon Generation 1 Pokedex</h1>
+<div id="sidebar">
+	<div id="index">
+	<h3>Index:</h3>
+	<ul>
+		<li><a href="/types">Types</a></li>
+		<li><a href="/location">Locations</a></li>
+		<li><a href="/move">Moves</a></li>
+		<li><a href="/">Pokemon</a></li>
+	</ul>
+	</div>
+	<br>
+	<form id="search" action="/pokemon/process" method="post">
+		<h3>Search Pokemon:</h3><br>
+		<input type="text" placeholder="search" name="searchText" id="searchText"><br>
+		<input type="submit" name="Search" value="send" id="searchSubmit">
+	</form>
+</div>
+<main>
+<h2>Pokemon of type {{this.type}}</h2>
+<table id="PokemonTable">
+	<tr>
+		<th>ID</th>
+        <th>Name</th>
+		<th colspan="2">Type</th>
+        <th>Description</th>
+		<th>Update</th>
+		<th>Delete</th>
+	</tr>
+	{{#if results}}
+		{{#each results}}
+			<tr>
+				<td><img src="https://img.pokemondb.net/sprites/sun-moon/icon/{{this.url}}.png" alt="{{this.name}}">{{this.id}}</td>
+				<td><a href="/pokemon/{{this.name}}">{{this.name}}</a></td>
+				<td class="typeBox" colspan="{{this.colspan}}"><div id="{{this.type1}}"><a href="/of_type/{{this.type1}}">{{this.type1}}</a></div></td>
+				<td class="typeBox" style="{{this.display}}"><div id="{{this.type2}}"><a href="/of_type/{{this.type2}}">{{this.type2}}</a></div></td>
+				<td>{{this.description}}</td>
+				<td>
+					<a href="/update?id={{this.id}}"><input type="button" value="Update"></a>
+			    </td>
+				<td>
+					<input type="button" 
+						name="delete" value="Delete" 
+						onClick = "deleteRow('PokemonTable','{{this.id}}')">
+					<input type="hidden" id="delete{{this.id}}">
+			    </td>
+			</tr>
+		{{/each}}
+	{{/if}}
+</table>
+</main>

@@ -1,0 +1,197 @@
+body {
+    
+    font: 14px Arial;
+    background-color: #CC0000;
+	
+}
+main {
+    margin-left: 220px;
+    padding: 0px 10px;
+}
+
+#sidebar {
+	float: left;
+	height: 100%;
+	width: 220px;
+	position: fixed;
+	z-index: 1;
+	background-color: black;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+}
+
+h1 {
+	text-align: center;
+}
+h2 {
+	text-align: center;
+}
+
+h3 {
+	color: white;
+}
+
+a {
+    color: #3B4CCA;
+}
+
+form {
+    background-color: #3B4CCA;
+    padding: 2em;
+	color: white;
+}
+
+#description {
+	
+}
+
+#dropdown {
+	text-align: center;
+}
+
+td {
+    border-style: solid;
+    padding: 5px;
+	border-radius: 5px;
+    background-color: #DCDCDC;
+	border-width: 1px;
+
+}
+
+label {
+	display: block;
+	direction: ltr;
+}
+
+th {
+    border-style: solid;
+    padding: .3em;
+    background-color: #FFDE00;
+
+}
+
+#addRelation {
+	text-align:center;
+}
+
+input[type=text]:disabled {
+    border-style: none;
+	display: block;
+	direction: ltr;
+}
+
+#title {
+    text-align: center;
+}
+
+table {
+	background-color: #A9A9A9;
+	margin: auto;
+}
+
+#search {
+	display: inline-block;
+	background-color: #3B4CCA;
+	color: white;
+}
+#newPokemon {
+}
+
+#index {
+	display:inline-block;	
+}
+
+.idBox {
+	text-align: right;
+}
+.typeBox {
+	background: none;
+	padding: 0px;
+	border-width: 0px;
+	margin: 0px;
+}
+
+.typeBox div a {
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+	color: white;
+}
+
+.moveCategory{
+	text-align: center;
+}
+
+#Bug, #Dark, #Dragon, #Electric, #Fighting, #Fire, #Flying, #Ghost, #Grass, #Ground, #Ice, #Normal, #Poison, #Psychic, #Rock, #Steel, #Water, #None, #Unknown {
+	border-radius: 8px;
+	border-width: 0px;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+	color: white;
+	text-align: center;
+	margin-bottom: 2px;
+	margin-top: 2px;
+	margin-left: 1px;
+	margin-right: 1px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+
+#Bug {
+	background-color: #A8B820;
+}
+#Dark {
+	background-color: #705848;
+}
+#Dragon {
+	background-color: #7038F8;
+}
+#Electric {
+	background-color: #F8D030;
+}
+#Fighting {
+	background-color: #C03028;
+}
+#Fire {
+	background-color: #F08030;
+}
+#Flying {
+	background-color: #A890F0;
+}
+#Ghost {
+	background-color: #705898;
+}
+#Grass {
+	background-color: #78C850;
+}
+#Ground {
+	background-color: #E0C068;
+}
+#Ice {
+	background-color: #98D8D8;
+}
+#Normal {
+	background-color: #A8A878;
+}
+#Poison {
+	background-color: #A040A0;
+}
+#Psychic {
+	background-color: #F85888;
+}
+#Rock {
+	background-color: #B8A038;
+}
+#Steel {
+	background-color: #B8B8D0;
+}
+#Water {
+	background-color: #6890F0;
+}
+#None {
+	background: none;
+	border-width: 0px;
+	color: white;
+	text-align: center;
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
